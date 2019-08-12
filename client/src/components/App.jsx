@@ -15,7 +15,6 @@ class App extends React.Component{
         };
     }
     componentDidMount(){
-        // var socket = io.connect('http://localhost:5000');
         this.setState({sessionId : this.props.sessionId, socket : this.props.socket});
         console.log('Socket Created');
     }

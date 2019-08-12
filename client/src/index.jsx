@@ -14,18 +14,7 @@ socket.on('connect', function() {
 });
 // Query DOM
 
-socket.on('chat', function(data){
-    output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
-});
-
-socket.on('typing', function(data){
-    feedback.innerHTML += '<p><em>' + data + ' is typing a messsage...</em></p>';
-});
-socket.on('targetclickred', function(data){
-    console.log("DATA from SocketListener on Red" + JSON.stringify(data));
-    scoreOne.innerHTML = data.scoreOne;
-    scoreTwo.innerHTML = data.scoreTwo;
-})
-socket.on('targetclickblue', function(data){
-    console.log("DATA from SocketListener on Blue" + JSON.stringify(data));
+socket.on('start', function(data){
+    console.log('GAME START from SocketListener' + JSON.stringify(data));
+    
 })
