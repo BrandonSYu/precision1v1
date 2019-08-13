@@ -15,7 +15,7 @@ class TargetBox extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            redTargetList : [{0 : [10, 20]}, {1 : [5, 6]}, {2 : [99, 50]}],
+            redTargetList : [{0 : [200, 300]}, {1 : [500, 200]}, {2 : [200, 200]}],
             blueTargetList : [{0 : [10, 20]}, {1 : [5, 6]}, {2 : [99, 50]}],
         }
     }

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+var targetSize = (Math.random() * (40 - 20)) + 20; //The maximum is exclusive and the minimum is inclusive
 
 const TargetOne = styled.div`
     color : red;
-    font-size : 30px;
+    font-size : ${targetSize}px;
 `;
 
 class TargetP1 extends React.Component{
@@ -24,14 +25,14 @@ class TargetP1 extends React.Component{
     }
     targetClick(){
         // console.log("Delete RED target from this client")
-        // this.setState({alive : false});
+        this.setState({alive : false});
         console.log(this.props.id)
         this.props.handleClickRed(this.props.id);
     }
     render(){
         return(
             <div>
-                <TargetOne onClick = {()=>this.targetClick()} className="fas fa-bullseye" />
+                <TargetOne style = {{position : "absolute", left : `${this.state.x}px`, bottom : `${this.state.y}px`}} onClick = {()=>this.targetClick()} className="fas fa-coins" />
             </div>
         )
     }
