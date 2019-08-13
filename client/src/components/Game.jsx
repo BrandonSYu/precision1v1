@@ -101,7 +101,6 @@ class Game extends React.Component{//timelimit, difficulty factor, speed
                 <Sound url="wiimenu.mp3"
                 loop={true}
                 autoLoad = {true}
-                autoPlay = {true}
                 playStatus={Sound.status.PLAYING}
                 playFromPosition={10 /* in milliseconds */}
                 onLoading={this.handleSongLoading}

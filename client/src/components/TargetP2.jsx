@@ -29,7 +29,9 @@ class TargetP2 extends React.Component{
     render(){
         return(
             <div>
-                <TargetTwo style = {{position : "absolute", left : `${this.state.x}px`, top : `${this.state.y}px`}} onClick = {()=>this.targetClick()} className="fas fa-coins" />
+                {this.state.id ?
+                <TargetTwo style = {{position : "absolute", left : `${this.state["x"] + "px"}`, bottom : `${this.state["y"]+ "px"}`}} onClick = {()=>this.targetClick()} className="fas fa-coins" />
+                :<div></div>}
             </div>
         )
     }

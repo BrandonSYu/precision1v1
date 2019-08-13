@@ -15,8 +15,8 @@ class TargetBox extends React.Component{
     constructor(props){
         super(props);
         this.state ={
-            redTargetList : [{0 : [200, 300]}, {1 : [500, 200]}, {2 : [200, 200]}],
-            blueTargetList : [{0 : [10, 20]}, {1 : [5, 6]}, {2 : [99, 50]}],
+            redTargetList : [{0 : ["200", "300"]}, {1 : ["1000", "200"]}, {2 : ["1000", "200"]}, {3 : ["630", "740"]}, {4 : ["20", "699"]}],
+            blueTargetList : [{0 : ["500", "80"]}, {1 : ["20", "30"]}, {2 : ["99", "50"]}, {3 : ["1200", "30"]}, {3 : ["200", "300"]}, {4 : ["230", "800"]}],
         }
     }
 
@@ -24,8 +24,8 @@ class TargetBox extends React.Component{
         return(
             <div>
                 <Box>
-                    {this.state.redTargetList.map((item) => <div id={"redTarget" + Object.keys(item)[0].toString()}><TargetP1 socket={this.props.socket} handleClickRed={this.props.handleClickRed} id={Object.keys(item)[0]} x={Object.values(item)[0]} y = {Object.values(item)[1]}/></div>)}
-                    {this.state.blueTargetList.map((item) => <div id= {"blueTarget" +  Object.keys(item)[0].toString()}><TargetP2 socket={this.props.socket} handleClickBlue={this.props.handleClickBlue} id={Object.keys(item)[0]} x={Object.values(item)[0]} y = {Object.values(item)[1]}/></div>)}
+                    {this.state.redTargetList.map((item) => <div id={"redTarget" + Object.keys(item)[0].toString()}><TargetP1 socket={this.props.socket} handleClickRed={this.props.handleClickRed} id={Object.keys(item)[0]} x={Object.values(item)[0][0]} y = {Object.values(item)[0][1]}/></div>)}
+                    {this.state.blueTargetList.map((item) => <div id= {"blueTarget" +  Object.keys(item)[0].toString()}><TargetP2 socket={this.props.socket} handleClickBlue={this.props.handleClickBlue} id={Object.keys(item)[0]} x={Object.values(item)[0][0]} y = {Object.values(item)[0][1]}/></div>)}
                 </Box>
             </div>
         )
