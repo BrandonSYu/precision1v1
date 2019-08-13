@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import Sound from 'react-sound';
 
 // var targetSize = (Math.random() * (40 - 20)) + 20; //The maximum is exclusive and the minimum is inclusive
 
 const TargetOne = styled.div`
-    color : red;
+    color : orange;
     font-size : 30px;
 `;
 
@@ -28,20 +29,24 @@ class TargetP1 extends React.Component{
         this.setState({alive : false});
         console.log(this.props.id)
         this.props.handleClickRed(this.props.id);
+
     }
     render(){
-        var style = {
-            position : "absolute",
-            top : `${this.state.y}px`,
-            left : `${this.state.x}px`,
-        }
-        console.log(style)
         return(
             <div>
                 {this.state.id ?
-                <TargetOne style = {style} onClick = {()=>this.targetClick()} className="fas fa-coins" />
+                <TargetOne style = {{position : "absolute", left : `${this.state["x"] + "px"}`, bottom : `${this.state["y"]+ "px"}`}} onClick = {()=>this.targetClick()} className="fas fa-coins" />
                 : <div></div>
             }
+            {!this.state.alive ?
+                            <Sound url="coin.mp3"
+                            autoLoad = {true}
+                            playStatus={Sound.status.PLAYING}
+                            playFromPosition={10 /* in milliseconds */}
+                            onLoading={this.handleSongLoading}
+                            onPlaying={this.handleSongPlaying}
+                            onFinishedPlaying={this.handleSongFinishedPlaying}/>
+        : <div/>}
             </div>
         )
     }
