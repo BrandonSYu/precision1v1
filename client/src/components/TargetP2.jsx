@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Sound from 'react-sound';
 
 const TargetTwo = styled.div`
     color : yellow;
@@ -32,7 +33,7 @@ class TargetP2 extends React.Component{
                 {this.state.id ?
                 <TargetTwo style = {{position : "absolute", left : `${this.state["x"] + "px"}`, bottom : `${this.state["y"]+ "px"}`}} onClick = {()=>this.targetClick()} className="fas fa-coins" />
                 :<div></div>}
-                            {!this.state.alive ?
+                {!this.state.alive ?
                             <Sound url="coin.mp3"
                             autoLoad = {true}
                             playStatus={Sound.status.PLAYING}
