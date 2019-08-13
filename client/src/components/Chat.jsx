@@ -13,14 +13,16 @@ class Chat extends React.Component{
     componentDidMount(){
         this.setState({socket : this.props.socket})
         this.props.socket.on('chat', function(data){
+            let handle = data["handle"];
+            let handleId = "handle" + handle;
             output.innerHTML += '<p><strong>' + data.handle + ': </strong>' + data.message + '</p>';
+            var element = document.getElementById(handleId);
+            element.parentNode.removeChild(element);
         });
         this.props.socket.on('typing', function(data){
-            var handle = data["handle"];
-            // console.log(handle)
-            var handleId = "handle" + handle;
+            let handle = data["handle"];
+            let handleId = "handle" + handle;
             console.log("Handle ID: " + handleId);
-            //console.log(JSON.stringify(data))
             if(data["typing"]===null){
                 var element = document.getElementById(handleId);
                 element.parentNode.removeChild(element);
@@ -33,9 +35,6 @@ class Chat extends React.Component{
         console.log("sending")
         var message = document.getElementById('message'),
         handle = document.getElementById('handle');
-    //   output = document.getElementById('output');
-
-
 // Emit events
 
     this.state.socket.emit('chat', {
@@ -57,18 +56,12 @@ class Chat extends React.Component{
                 handle : handle.value
             });
         } else if(message.length === 0){
-            console.log('HERE')
             this.setState({typed : false})
             this.state.socket.emit('typing', {
                 handle : handle.value,
                 typing : null
             });
         }
-        // if(message.value.length > 1){
-        //     console.log('Already Typing')
-        // }else{
-        //     this.state.socket.emit('typing', handle.value);
-        // }
     }
     
     render(){

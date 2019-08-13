@@ -26,19 +26,20 @@ class Game extends React.Component{//timelimit, difficulty factor, speed
     componentDidMount(){
         console.log(this.props.sessionId);
         this.setState({socket : this.props.socket, sessionId : this.props.sessionId});
-        // if(!this.state.playerOne){
-        //     this.setState({playerOne : this.props.socket.id});
-        //     console.log('Player One Set ' + this.props.socket.id)
-        // } else if(!this.state.playerTwo){
-        //     this.setState({playerTwo : this.props.socket.id});
-        //     console.log('Player Two Set ' + this.props.socket.id)
-        // }else{
-        //     return;
-        // }
-        // this.state.socket.on('start', function(data){
-        //     console.log('GAME START from GameComponent' + JSON.stringify(data));
-        //     this.setState({start : true});
-        // })
+        this.props.socket.on('targetclickred', function(data){
+            console.log("Delete this RED target GLOBALLY " + data["id"]);
+            console.log(JSON.stringify(data) + 'from target')
+            var element = document.getElementById("redTarget" + data["id"]);
+            element.parentNode.removeChild(element);
+            this.setState({scoreOne : data["scoreOne"], scoreTwo : data["scoreTwo"]})
+        })
+        this.props.socket.on('targetclickblue', function(data){
+            console.log("Delete this Blue target GLOBALLY " + data["id"]);
+            console.log(JSON.stringify(data) + 'from target')
+            var element = document.getElementById("blueTarget" + data["id"]);
+            element.parentNode.removeChild(element);
+            this.setState({scoreOne : data["scoreOne"], scoreTwo : data["scoreTwo"]})
+        })
 
     }
     handleStart(){//spawn random targets of both color, start timer countdown, 
@@ -58,7 +59,6 @@ class Game extends React.Component{//timelimit, difficulty factor, speed
             scoreTwo : this.state.scoreTwo,
             id : id
         })
-
     }
     handleClickBlue(id){
         console.log('Client: Blue TARGET HAS BEEN CLICKED')
@@ -74,6 +74,7 @@ class Game extends React.Component{//timelimit, difficulty factor, speed
     random(){
 
     }
+    
     render(){
         return(
             <div>

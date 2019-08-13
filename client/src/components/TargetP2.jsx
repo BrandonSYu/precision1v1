@@ -4,8 +4,6 @@ import styled from 'styled-components';
 const TargetTwo = styled.div`
     color : blue;
     font-size : 30px;
-    height : 20%;
-    width : 50px;
 `;
 
 class TargetP2 extends React.Component{
@@ -21,12 +19,6 @@ class TargetP2 extends React.Component{
     }
     componentDidMount(){
         this.setState({id : this.props.id, x : this.props.x, y : this.props.y})
-        this.props.socket.on('targetclickblue', function(data){
-            console.log("Delete this Blue target GLOBALLY " + data["id"]);
-            console.log(JSON.stringify(data) + 'from target')
-            var element = document.getElementById("blueTarget" + data["id"]);
-            element.parentNode.removeChild(element);
-        })
     }
     targetClick(){
         // console.log("Delete Blue target from this client")
@@ -37,7 +29,7 @@ class TargetP2 extends React.Component{
     render(){
         return(
             <div>
-                    <TargetTwo onClick = {()=>this.targetClick()} className="fas fa-bullseye" />
+                <TargetTwo onClick = {()=>this.targetClick()} className="fas fa-bullseye" />
             </div>
         )
     }
